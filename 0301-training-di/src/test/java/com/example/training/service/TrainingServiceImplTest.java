@@ -10,7 +10,7 @@ import com.example.training.entity.Training;
 class TrainingServiceImplTest {
     @Test
     public void test_findAll() {
-        TrainingService trainingService = null;
+        TrainingService trainingService = new TrainingServiceImpl(new MockTrainingRepository());
 
         List<Training> trainings = trainingService.findAll();
         // 結果の確認
