@@ -15,18 +15,25 @@ import com.example.shopping.input.OrderInput;
 import com.example.shopping.repository.OrderItemRepository;
 import com.example.shopping.repository.OrderRepository;
 import com.example.shopping.repository.ProductRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class OrderServiceImpl implements OrderService {
-    private final OrderRepository orderRepository;
-    private final OrderItemRepository orderItemRepository;
-    private final ProductRepository productRepository;
+    private OrderRepository orderRepository; // setterインジェクション
+    private final OrderItemRepository orderItemRepository; // コンストラクタインジェクション
+    @Autowired
+    private ProductRepository productRepository; // フィールドインジェクション
 
-    public OrderServiceImpl(OrderRepository orderRepository, OrderItemRepository orderItemRepository, ProductRepository productRepository) {
-        this.orderRepository = orderRepository;
+    @Autowired
+    public OrderServiceImpl(OrderItemRepository orderItemRepository) {
         this.orderItemRepository = orderItemRepository;
-        this.productRepository = productRepository;
     }
 
+    @Autowired
+    public void setOrderRepository(OrderRepository orderRepository) {
+        this.orderRepository = orderRepository;
+    }
     @Override
     public Order placeOrder(OrderInput orderInput, CartInput cartInput) {
         // Repositoryに渡す注文オブジェクトを生成

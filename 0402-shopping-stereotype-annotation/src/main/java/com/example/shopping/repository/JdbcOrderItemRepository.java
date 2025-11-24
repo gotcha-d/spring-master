@@ -2,7 +2,9 @@
 package com.example.shopping.repository;
 
 import com.example.shopping.entity.OrderItem;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public class JdbcOrderItemRepository implements OrderItemRepository {
 
     @Override
