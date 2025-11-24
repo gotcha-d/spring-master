@@ -20,20 +20,16 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class OrderServiceImpl implements OrderService {
-    private OrderRepository orderRepository; // setterインジェクション
-    private final OrderItemRepository orderItemRepository; // コンストラクタインジェクション
-    @Autowired
-    private ProductRepository productRepository; // フィールドインジェクション
+    private final OrderRepository orderRepository;
+    private final OrderItemRepository orderItemRepository;
+    private final ProductRepository productRepository;
 
-    @Autowired
-    public OrderServiceImpl(OrderItemRepository orderItemRepository) {
-        this.orderItemRepository = orderItemRepository;
-    }
-
-    @Autowired
-    public void setOrderRepository(OrderRepository orderRepository) {
+    public OrderServiceImpl(OrderRepository orderRepository, OrderItemRepository orderItemRepository, ProductRepository productRepository) {
         this.orderRepository = orderRepository;
+        this.orderItemRepository = orderItemRepository;
+        this.productRepository = productRepository;
     }
+
     @Override
     public Order placeOrder(OrderInput orderInput, CartInput cartInput) {
         // Repositoryに渡す注文オブジェクトを生成
