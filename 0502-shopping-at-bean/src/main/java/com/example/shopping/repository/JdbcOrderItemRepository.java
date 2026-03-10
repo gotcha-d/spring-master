@@ -10,7 +10,6 @@ import org.springframework.stereotype.Repository;
 
 import com.example.shopping.entity.OrderItem;
 
-@Repository
 public class JdbcOrderItemRepository implements OrderItemRepository {
     private final DataSource dataSource;
 

@@ -11,7 +11,6 @@ import org.springframework.stereotype.Repository;
 
 import com.example.shopping.entity.Order;
 
-@Repository
 public class JdbcOrderRepository implements OrderRepository {
     private final DataSource dataSource;
 
