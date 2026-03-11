@@ -31,6 +31,11 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
+    public Order search(String orderId) {
+        return orderRepository.getById(orderId);
+    }
+
+    @Override
     public Order placeOrder(OrderInput orderInput, CartInput cartInput) {
         // Repositoryに渡す注文オブジェクトを生成
         Order order = new Order();
@@ -91,4 +96,6 @@ public class OrderServiceImpl implements OrderService {
     private int calculateTax(int price) {
         return (int) (price * 1.1);
     }
+
+
 }

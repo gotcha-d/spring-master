@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.sql.DataSource;
+import javax.xml.crypto.Data;
 
 import com.example.shopping.input.OrderInput;
 import org.slf4j.LoggerFactory;
@@ -36,6 +37,11 @@ public class ShoppingApplication {
                 .addScripts("schema.sql", "data.sql")
                 .setType(EmbeddedDatabaseType.H2).build();
         return dataSource;
+    }
+
+    @Bean
+    public JdbcTemplate jdbcTemplate(DataSource dataSource) {
+        return new JdbcTemplate(dataSource);
     }
 
     public static void main(String[] args) {
@@ -74,6 +80,8 @@ public class ShoppingApplication {
         Order order = orderService.placeOrder(orderInput, cartInput);
 
         System.out.println("注文確定処理が完了しました。注文ID=" + order.getId());
+        Order orderedItem = orderService.search(order.getId());
+        System.out.println("注文した商品は" + orderedItem.getCustomerName());
     }
 }
 
