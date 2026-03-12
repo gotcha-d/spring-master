@@ -13,6 +13,7 @@ import com.example.training.input.ReservationInput;
 import com.example.training.repository.ReservationRepository;
 import com.example.training.repository.StudentTypeRepository;
 import com.example.training.repository.TrainingRepository;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class ReservationServiceImpl implements  ReservationService {
@@ -27,6 +28,7 @@ public class ReservationServiceImpl implements  ReservationService {
 		this.reservationRepository = reservationRepository;
 	}
 
+    @Transactional
 	@Override
 	public Reservation reserve(ReservationInput reservationInput) {
 		Training training = trainingRepository.selectById(reservationInput.getTrainingId());
