@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>商品詳細</title>
+</head>
+<body>
+    <h1>商品詳細</h1>
+    <table th:object="${product}">
+        <tr>
+            <th>商品名</th>
+            <td th:text="*{name}"></td>
+            <th>価格</th>
+            <td th:text="*{price}"></td>
+            <th>在庫</th>
+            <td th:text="*{stock}"></td>
+        </tr>
+    </table>
+    <a th:href="@{/catalog/display-list}">商品一覧へ戻る</a>
+</body>
+</html>
